@@ -28,6 +28,10 @@ function InterviewerList(props) {
 }
 
 InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+}
+
+InterviewerList.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   interviewers: PropTypes.array.isRequired

@@ -25,6 +25,11 @@ export default function Form(props) {
       return;
     }
 
+    if (interviewer === null) {
+      setError("Please select an interviewer")
+      return;
+    }
+
     setError("");
     props.onSave(name, interviewer);
   }
@@ -34,14 +39,15 @@ export default function Form(props) {
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
-            className="appointment__create-input text--semi-bold"
-            name="name"
-            type="text"
-            placeholder="Enter Student Name"
-            value={name}
-            onChange={event => {
-              setName(event.target.value);
-            }}
+          className="appointment__create-input text--semi-bold"
+          name="name"
+          type="text"
+          placeholder="Enter Student Name"
+          value={name}
+          onChange={event => {
+            setName(event.target.value);
+          }}
+          data-testid="student-name-input"
           />
         </form>
         <section className="appointment__validation">{error}</section>
@@ -53,10 +59,10 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>
+          <Button danger onClick={() => cancel()}>
             Cancel
           </Button>
-          <Button confirm onClick={validate}>
+          <Button confirm onClick={() => validate()}>
             Save
           </Button>
         </section>

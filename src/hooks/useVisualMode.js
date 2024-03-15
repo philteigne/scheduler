@@ -4,8 +4,8 @@ import {useState} from "react";
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]); 
 
-  function transition(newMode){
-    setHistory(prev => [...prev, newMode])
+  function transition(newMode, replace = false){
+    setHistory(prev => replace ? [...prev.slice(0, prev.length - 1), newMode] : [...prev, newMode])
   }
 
   function back() {
